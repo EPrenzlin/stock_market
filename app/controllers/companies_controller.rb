@@ -8,11 +8,15 @@ class CompaniesController < ApplicationController
     @c = Company.new(company_params)
     @c.save 
     if @c
-        session[:id] = @c.id
+        session[:company_id] = @c.id
         redirect_to company_path(@c)
     else 
         redirect_to new 
     end
+    end
+
+    def show 
+    
     end
 
     private 
