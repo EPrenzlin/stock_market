@@ -1,0 +1,15 @@
+<h1> Sign-up </h1> 
+
+<%=form_for @c do |f| %>
+<%=f.label :name %>
+<%=f.text_field :name %> <br> 
+<%=f.label :password %>
+<%=f.password_field :password %><br> 
+<%=f.label :address %>
+<%=f.text_field :address %> <br>
+<%=f.label :description %>
+<%=f.text_area :description %> <br> 
+<%=f.label :industry %>
+<%=f.text_field :industry %>
+<%=f.submit "Sign-up"%>
+<%end%>
