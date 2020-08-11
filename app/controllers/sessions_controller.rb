@@ -18,7 +18,24 @@ class SessionsController < ApplicationController
     end
 
     def omniauth   
-    raise params.inspect
+    c = Company.find_or_create_by(uid: request.env["omniauth.auth"]["uid"])
+    c.name = request.env["omniauth.auth"]["info"]["name"]
+    c.password = SecureRandom.hex(16)
+    c.save 
+    if c.valid?
+    session[:id] = c.id
+    redirect_to new_company_path
+    else
+    flash[:message] = c.errors.full_messages.join(", ")
+    redirect_to company_path
+    end
+    end
+
+    private 
+    def auth 
+    if request.env["omniauth.auth"]["info"]["name"] 
+    end
+
     end
  
 

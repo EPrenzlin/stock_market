@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_190810) do
+ActiveRecord::Schema.define(version: 2020_08_11_211439) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_190810) do
     t.string "industry"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "uid", limit: 32
   end
 
   create_table "shares", force: :cascade do |t|
