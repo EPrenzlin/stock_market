@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
 
     def create 
     @c = Company.find_by(name:params[:name]) 
-
     if @c && @c.authenticate(parms[:password])
         sessions[:company_id] = @c.id 
         redirect_to company_path(@c) 
@@ -18,6 +17,9 @@ class SessionsController < ApplicationController
     end
     end
 
+    def omniauth   
+    raise params.inspect
+    end
  
 
 end

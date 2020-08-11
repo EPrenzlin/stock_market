@@ -16,7 +16,7 @@ class CompaniesController < ApplicationController
     end
 
     def show 
-    
+    #need to add in an authorisation ; you can't see unless you are logged in. 
     end
 
     private 

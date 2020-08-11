@@ -56,3 +56,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "bcrypt", "~> 3.1"
 
 gem "pry", "~> 0.13.1"
+
+gem "omniauth", "~> 1.9"
+
+gem "dotenv-rails", "~> 2.7"
+gem 'omniauth-google-oauth2'
+
+gem "omniauth-google", "~> 1.0"
+
+gem "thin", "~> 1.7"
