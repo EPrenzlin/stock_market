@@ -6,7 +6,11 @@ Rails.application.routes.draw do
  
   get '/login' => 'sessions#new' 
   post '/login' => 'sessions#create' 
+
   get '/signup' => 'company#new'
+
+  get '/logout' => 'sessions#destroy'
+  post '/logout' => 'sessions#destroy'
 
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth' 
   #need to change the provider to google 

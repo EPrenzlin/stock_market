@@ -15,9 +15,38 @@ class CompaniesController < ApplicationController
     end
     end
 
+    def index 
+    if logged_in 
+        @c = Company.all 
+    else 
+        render :new
+    end
+    end
+
+    def edit 
+        if logged_in 
+            @c = Company.find_by(id:params[:id]) 
+        else 
+            render :new
+        end
+    end
+
+    def update 
+    @c = Company.find_by(id:params[:id])
+    @c.update(company_params) 
+    redirect_to company_path(@c)
+    end
+
     def show 
     #need to add in an authorisation ; you can't see unless you are logged in. 
+    #make one so if no session id, not allowed. 
+    if logged_in 
+    @c = Company.find_by(id:params[:id]) 
+    else 
+        render :new
     end
+    end
+        
 
     private 
     def company_params 

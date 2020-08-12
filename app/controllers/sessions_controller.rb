@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
 
     def create 
     @c = Company.find_by(name:params[:name]) 
-    if @c && @c.authenticate(parms[:password])
-        sessions[:company_id] = @c.id 
+    if @c && @c.authenticate(params[:password])
+        session[:id] = @c.id 
         redirect_to company_path(@c) 
     else 
         redirect_to '/'
@@ -18,25 +18,24 @@ class SessionsController < ApplicationController
     end
 
     def omniauth   
-    c = Company.find_or_create_by(uid: request.env["omniauth.auth"]["uid"])
-    c.name = request.env["omniauth.auth"]["info"]["name"]
-    c.password = SecureRandom.hex(16)
-    c.save 
+    c = Company.create_from_omniauth(auth)
     if c.valid?
     session[:id] = c.id
-    redirect_to new_company_path
+    redirect_to company_path(c)
     else
     flash[:message] = c.errors.full_messages.join(", ")
     redirect_to company_path
     end
     end
 
-    private 
-    def auth 
-    if request.env["omniauth.auth"]["info"]["name"] 
+    def destroy 
+    session.clear
+    redirect_to '/'
     end
 
+    private 
+    def auth 
+    request.env["omniauth.auth"]
     end
- 
 
 end
