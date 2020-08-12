@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+before_action :authenticate
 
     def new 
     @c = Company.new
@@ -38,19 +39,30 @@ class CompaniesController < ApplicationController
     end
 
     def show 
-    #need to add in an authorisation ; you can't see unless you are logged in. 
-    #make one so if no session id, not allowed. 
-    if logged_in 
+    authenticate
     @c = Company.find_by(id:params[:id]) 
-    else 
-        render :new
     end
-    end
-        
+
 
     private 
     def company_params 
     params.require(:company).permit(:name, :password, :address, :description, :industry)
+    end
+
+    def current_user
+    Company.find_by(id:session[:id])
+    end
+        
+    def logged_in? 
+    !!current_user 
+    end
+            
+    def authenticate
+    if logged_in? == true
+    true
+    else
+    redirect_to '/'
+    end
     end
 
 end
