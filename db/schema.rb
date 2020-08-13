@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_211439) do
+ActiveRecord::Schema.define(version: 2020_08_13_220532) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2020_08_11_211439) do
     t.integer "company_id"
     t.integer "stock_exchange_id"
     t.integer "price"
-    t.string "type"
     t.boolean "dividend"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "preference"
   end
 
   create_table "stock_exchanges", force: :cascade do |t|

@@ -6,12 +6,12 @@ class SharesController < ApplicationController
 
     def new 
     @share = Share.new
+    @company = current_user
     end
 
     def create 
-    #need to do the private params
+    share = Share.new(share_params)
     binding.pry
-    @share = Share.new(share_params)
     end
     
     def show 
@@ -19,11 +19,16 @@ class SharesController < ApplicationController
     end
 
     private 
-
     def share_params
-    require(:share).permit(:company_id, :stockexchange_id, :price, :type, :dividend)
+    params.require(:share).permit(:company_id, :stock_exchange_id, :price, :preference, :dividend)
     end
     #for stock_exchange (id:params[:share][:stock_exchange_id])
     #use hidden_field for the new stock, and have a company_id there. 
     #you can't just make new shares without it being associated with a company. 
+
+    def current_user
+    Company.find_by(id:session[:id])
+    end
+
 end
+
