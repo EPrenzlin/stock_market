@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  resources :companies, only: [:show,:new, :index] do 
+    resources :shares, only:[:new, :show, :edit, :index, :destroy]
+  end 
+  
   resources :shares
-  resources :companies
 
   get '/' => 'sessions#welcome'
  
@@ -13,7 +16,6 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
 
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth' 
-  #need to change the provider to google 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

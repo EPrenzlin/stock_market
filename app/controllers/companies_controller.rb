@@ -25,7 +25,8 @@ before_action :authenticate
     end
 
     def edit 
-        if logged_in 
+        current_user 
+        if logged_in?
             @c = Company.find_by(id:params[:id]) 
         else 
             render :new
@@ -39,7 +40,6 @@ before_action :authenticate
     end
 
     def show 
-    authenticate
     @c = Company.find_by(id:params[:id]) 
     end
 
