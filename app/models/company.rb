@@ -2,6 +2,7 @@ class Company < ApplicationRecord
     has_secure_password 
     has_many :shares 
     has_many :stock_exchanges, through: :shares
+    accepts_nested_attributes_for :shares
     
     def self.create_from_omniauth(auth)
         Company.find_or_create_by(uid: auth["uid"]) do |c| 

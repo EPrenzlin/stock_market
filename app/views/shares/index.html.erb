@@ -1,2 +1,15 @@
-<%=@share%>
 <h1> This is the share index page </h1>
+<%if @c.shares.blank? %>
+<%= "This company has no shares" %>
+<%else%>
+<% @c.shares.each do |s| %>
+<%=s.price%>
+<%=s.preference%>
+<%=s.dividend%>
+<%=s.stock_exchange.name%> 
+<%=link_to "Edit Share details", edit_company_share_path(@c.id,s.id)%>
+<br> 
+<%end%>
+<%end%>
+
+

@@ -1,5 +1,5 @@
 <h1> Sign-up </h1> 
-
+<h1> blah blah </h1>
 <%=form_for @c do |f| %>
 <%=f.label :name %>
 <%=f.text_field :name %> <br> 
@@ -11,5 +11,15 @@
 <%=f.text_area :description %> <br> 
 <%=f.label :industry %>
 <%=f.text_field :industry %>
+
+<%=f.fields_for @c.shares.build do |s| %>
+<%=s.label :price%>
+<%=s.text_field :price%>
+<%=s.label :dividend%>
+<%=s.text_field :dividend%>
+<%=s.label :preference_share%>
+<%=s.text_field :preference%> 
+<%=s.collection_select :stock_exchange_id, StockExchange.all, :id, :name %>
+<%end%>
 <%=f.submit "Sign-up"%>
 <%end%>

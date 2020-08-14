@@ -1,7 +1,7 @@
 class SharesController < ApplicationController
 
     def index 
-    @shares = Share.all
+    @c = Company.find_by(id:params[:company_id])
     end
 
     def new 
@@ -11,24 +11,56 @@ class SharesController < ApplicationController
 
     def create 
     share = Share.new(share_params)
-    binding.pry
+    share.save
+    if share.valid?
+        redirect_to company_shares_path(current_user) 
+    else 
+        redirect_to company_path(current_user) 
     end
+       end
     
     def show 
     @share = Share.find_by(id:params[:id])
+    end
+
+    def edit 
+    @company = current_user
+    @share = Share.find_by(id:params[:id])
+    end
+
+    def update 
+    @share = Share.find_by(id:params[:id])
+    @share.update(share_params)
+    redirect_to company_shares_path(@share.company_id)
     end
 
     private 
     def share_params
     params.require(:share).permit(:company_id, :stock_exchange_id, :price, :preference, :dividend)
     end
-    #for stock_exchange (id:params[:share][:stock_exchange_id])
-    #use hidden_field for the new stock, and have a company_id there. 
-    #you can't just make new shares without it being associated with a company. 
 
     def current_user
-    Company.find_by(id:session[:id])
+    Company.find_by(id:session[:company_id])
     end
 
+    def logged_in? 
+    !!current_user 
+    end
+                
+    def authenticate
+    if logged_in? == true
+    true
+    else
+    redirect_to '/'
+    end
+    end    
+
+    def authorised? 
+    if params[:company_id] == current_user 
+        true
+    else
+        flash.alert = "You are not allowed to make shares of another company"  
+    end
+    end
 end
 

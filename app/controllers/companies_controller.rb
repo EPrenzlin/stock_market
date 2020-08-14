@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-before_action :authenticate
+before_action :authenticate, only:[:index, :edit]
 
     def new 
     @c = Company.new
@@ -7,9 +7,16 @@ before_action :authenticate
 
     def create 
     @c = Company.new(company_params)
-    @c.save 
-    if @c
+    share = Share.new
+    share.price = params[:company][:share][:price]
+    share.dividend = params[:company][:share][:dividend]
+    share.preference = params[:company][:share][:preference]
+    share.stock_exchange_id = params[:company][:share][:stock_exchange_id]
+    @c.shares << share
+    @c.save
+    if @c.valid?
         session[:company_id] = @c.id
+        binding.pry
         redirect_to company_path(@c)
     else 
         redirect_to new 
@@ -17,7 +24,7 @@ before_action :authenticate
     end
 
     def index 
-    if logged_in 
+    if logged_in?
         @c = Company.all 
     else 
         render :new

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :companies, only: [:show,:new, :index] do 
+  resources :companies, only: [:show,:new,:index] do 
     resources :shares, only:[:new, :show, :edit, :index, :destroy]
   end 
   
-  resources :shares
-
+  resources :shares 
+  resources :companies
   get '/' => 'sessions#welcome'
  
   get '/login' => 'sessions#new' 
