@@ -1,10 +1,11 @@
 class CompaniesController < ApplicationController
-before_action :authenticate, only:[:index, :edit]
+before_action :authenticate, only:[:index, :edit, :show]
 
     def new 
     @c = Company.new
     end
 
+    #talk to Micah about the create action, because... I know this can be better
     def create 
     @c = Company.new(company_params)
     share = Share.new
@@ -16,7 +17,6 @@ before_action :authenticate, only:[:index, :edit]
     @c.save
     if @c.valid?
         session[:company_id] = @c.id
-        binding.pry
         redirect_to company_path(@c)
     else 
         redirect_to new 
@@ -57,7 +57,7 @@ before_action :authenticate, only:[:index, :edit]
     end
 
     def current_user
-    Company.find_by(id:session[:id])
+    Company.find_by(id:session[:company_id])
     end
         
     def logged_in? 

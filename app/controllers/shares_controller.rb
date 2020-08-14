@@ -1,5 +1,6 @@
 class SharesController < ApplicationController
-
+before_action :authenticate
+    
     def index 
     @c = Company.find_by(id:params[:company_id])
     end
@@ -24,8 +25,12 @@ class SharesController < ApplicationController
     end
 
     def edit 
+    if authorized?
     @company = current_user
     @share = Share.find_by(id:params[:id])
+    else 
+        redirect_to company_path(current_user.id)
+    end 
     end
 
     def update 
@@ -53,14 +58,15 @@ class SharesController < ApplicationController
     else
     redirect_to '/'
     end
-    end    
+    end  
+    
+    def authorized? 
+    if current_user.shares.include?(Share.find_by(id:params[:id])) 
+        true 
+    else 
+        false
+    end
+    end
 
-    def authorised? 
-    if params[:company_id] == current_user 
-        true
-    else
-        flash.alert = "You are not allowed to make shares of another company"  
-    end
-    end
 end
 

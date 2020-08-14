@@ -5,13 +5,12 @@ Rails.application.routes.draw do
   
   resources :shares 
   resources :companies
+  resources :stock_exchanges, only:[:show, :index]
+  
   get '/' => 'sessions#welcome'
- 
   get '/login' => 'sessions#new' 
   post '/login' => 'sessions#create' 
-
   get '/signup' => 'company#new'
-
   get '/logout' => 'sessions#destroy'
   post '/logout' => 'sessions#destroy'
 
