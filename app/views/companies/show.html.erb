@@ -1,4 +1,16 @@
-Show page
+<br>
+Show page<br> 
+<br>
 
-<%=@c.name%>
-<%=@c.description%>
+<%=link_to "All current Shares",company_shares_path(@c.id)%><br>
+
+
+Company Name: <%=@c.name%> <br> 
+Description:<%=@c.description%><br>
+Address:<%=@c.address%> <br>
+Industry:<%=@c.industry%>
+
+<br> 
+<%if @c.id == @current_user.id %>
+<%=link_to "Issue new Shares for #{@c.name}", new_company_share_path(@c.id)%>
+<%end%>

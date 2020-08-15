@@ -3,12 +3,11 @@
 <%= "This company has no shares" %>
 <%else%>
 <% @c.shares.each do |s| %>
-<%=s.price%>
-<%=s.preference%>
-<%=s.dividend%>
-<%=s.stock_exchange.name%> 
-<%=link_to "Edit Share details", edit_company_share_path(@c.id,s.id)%>
-<br> 
+<%="Notional Price: #{s.price}"%> <br>
+<%="Preference Share? #{s.preference}"%><br>
+<%="Pays a Dividend? #{s.dividend}"%><br>
+<%="Listed on : #{s.stock_exchange.name}"%> <br>
+<%=link_to "Edit Share details", edit_company_share_path(@c.id,s.id)%> <br>
 <%end%>
 <%end%>
 

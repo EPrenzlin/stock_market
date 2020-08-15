@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   resources :shares 
   resources :companies
-  resources :stock_exchanges, only:[:show, :index]
+  resources :stock_exchange, only:[:show, :index]
   
   get '/' => 'sessions#welcome'
   get '/login' => 'sessions#new' 

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     def create 
     @c = Company.find_by(name:params[:name]) 
     if @c && @c.authenticate(params[:password])
-        session[:id] = @c.id 
+        session[:company_id] = @c.id 
         redirect_to company_path(@c) 
     else 
         redirect_to '/'
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     def omniauth   
     c = Company.create_from_omniauth(auth)
     if c.valid?
-    session[:id] = c.id
+    session[:company_id] = c.id
     redirect_to company_path(c)
     else
     flash[:message] = c.errors.full_messages.join(", ")

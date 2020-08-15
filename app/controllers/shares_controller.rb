@@ -6,8 +6,12 @@ before_action :authenticate
     end
 
     def new 
+    if params[:company_id] == current_user.id
     @share = Share.new
     @company = current_user
+    else 
+        redirect_to company_path(current_user.id)
+    end
     end
 
     def create 

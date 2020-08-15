@@ -1,0 +1,8 @@
+
+
+<%= "The following companies have shares listed on the #{@se.name}:"%> <br>
+
+<% @se.shares.each do |share|%>
+<%= "Company name: #{share.company.name} "%> <br>
+<%= "Industry #{share.company.industry} "%> <br>
+<%end%>

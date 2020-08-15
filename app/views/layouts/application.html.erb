@@ -10,8 +10,11 @@
   </head>
 
   <body>
-  <%=link_to "logout", logout_path %>
-    <%= yield %>
+  <%=link_to "logout", logout_path %> <br>
+  <%=link_to "All Companies", companies_path%> <br>
+  <%=link_to "All Stock Exchanges", stock_exchange_index_path%> <br>
+  <br> 
+  <%= yield %>
 
   </body>
 </html>

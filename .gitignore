@@ -11,7 +11,6 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /db/*.sqlite3-*
-/db/seeds.rb
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -41,3 +40,17 @@ yarn-debug.log*
 .yarn-integrity
 
 .env
+./db/seeds.rb
+
+
+<%=form_for @share do |f| %>
+<%=f.label :price %>
+<%=f.text_field :price %>
+<%=f.label :preference %>
+<%=f.text_field :preference  %> 
+<%=f.collection_select :stock_exchange_id, StockExchange.all, :id, :name %>
+<%=f.hidden_field :company_id, value: @company.id%>
+<%=f.label :dividend %>
+<%=f.text_area :dividend %>
+<%=f.submit " Edit an existing share"%>
+<%end %> 

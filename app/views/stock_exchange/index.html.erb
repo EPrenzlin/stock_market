@@ -1,0 +1,7 @@
+<br>
+<%@se.each do |s| %>
+<%=link_to "#{s.name}", stock_exchange_path(s.id) %> <br>
+<%="Address #{s.address}"%> <br> 
+<%=s.history %> <br>
+<br> 
+<%end%>

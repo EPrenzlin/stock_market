@@ -1,13 +1,4 @@
 <h1> This makes a new share into the Stock Market </h1> 
-<%=@company.name%>
-<%=form_for @share do |f| %>
-<%=f.label :price %>
-<%=f.text_field :price %>
-<%=f.label :preference %>
-<%=f.text_field :preference  %> 
-<%=f.collection_select :stock_exchange_id, StockExchange.all, :id, :name %>
-<%=f.hidden_field :company_id, value: @company.id%>
-<%=f.label :dividend %>
-<%=f.text_area :dividend %>
-<%=f.submit "Make a new share"%>
-<%end%>
+<h1><%="You are issuing new Shares for #{@company.name}"%></h1>
+
+<%=render 'shares'%>

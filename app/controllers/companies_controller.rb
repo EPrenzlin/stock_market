@@ -5,7 +5,6 @@ before_action :authenticate, only:[:index, :edit, :show]
     @c = Company.new
     end
 
-    #talk to Micah about the create action, because... I know this can be better
     def create 
     @c = Company.new(company_params)
     share = Share.new
@@ -48,6 +47,7 @@ before_action :authenticate, only:[:index, :edit, :show]
 
     def show 
     @c = Company.find_by(id:params[:id]) 
+    @current_user = current_user
     end
 
 
