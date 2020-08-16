@@ -1,5 +1,5 @@
 <h1> Sign-up </h1> 
-<h1> blah blah </h1>
+<h1> Please fill in the below to gain access to the Shares Tracker </h1>
 <%=form_for @c do |f| %>
 <%=f.label :Company_name %>
 <%=f.text_field :name %> <br> 
@@ -27,10 +27,14 @@
 <%end%>
 
 
+<div class="field_with_errors">
 <%if @c.errors.any?%> 
 <%=@c.errors.full_messages.each do |error|%>
-<%=puts error %><br>
+<%= puts error %><br>
 <%end%>
 <%end%>
+</div>
+
+
 
 

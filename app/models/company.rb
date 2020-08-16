@@ -12,6 +12,7 @@ class Company < ApplicationRecord
     validates :industry, presence:true
 
     
+    
 
     def self.create_from_omniauth(auth)
         Company.find_or_create_by(uid: auth["uid"]) do |c| 
@@ -20,5 +21,11 @@ class Company < ApplicationRecord
         c.save 
         end
     end
+
+    def self.order_share_price(params) 
+    self.shares.order(price::desc)
+    end
+
+
 
 end

@@ -1,0 +1,8 @@
+<%=form_for @share do |f| %>
+<%=f.label :Edited__Notional_Price %>
+<%=f.text_field :price %><br> 
+Which Stock Exchange will the Edited share be listed on?
+<%=f.collection_select :stock_exchange_id, StockExchange.all, :id, :name %><br>
+<%=f.hidden_field :company_id, value: @company.id%>
+<%=f.submit "Submit"%>
+<%end%>

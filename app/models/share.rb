@@ -7,6 +7,6 @@ class Share < ApplicationRecord
     validates :dividend, presence:true
     validates :company, presence:true
     validates :stock_exchange, presence:true
-    #validations to work on 
+
 
 end

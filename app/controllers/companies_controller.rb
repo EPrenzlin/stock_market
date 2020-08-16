@@ -13,9 +13,8 @@ before_action :authenticate, only:[:index, :edit, :show]
     @share.preference = params[:company][:share][:preference]
     @share.stock_exchange_id = params[:company][:share][:stock_exchange_id]
     @c.shares << @share
-    @c.save
-    binding.pry
     if @c.valid?
+        @c.save
         session[:company_id] = @c.id
         redirect_to company_path(@c)
     else 

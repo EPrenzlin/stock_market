@@ -1,7 +1,7 @@
 
 
 <%= "The following companies have shares listed on the #{@se.name}:"%> <br>
-<% @se.companys.each do |company|%>
+<% @se.companys.distinct.each do |company|%>
 <%= link_to"#{company.name}", company_path(company.id)%> <br>
 <%= "Industry #{company.industry} "%> <br>
 <%end%>

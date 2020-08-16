@@ -3,6 +3,8 @@ before_action :authenticate
     
     def index 
     @c = Company.find_by(id:params[:company_id])
+    #if there is a params[:search], otherwise let it be. 
+    binding.pry
     end
 
     def new 
