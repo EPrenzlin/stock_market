@@ -1,8 +1,7 @@
 
 
 <%= "The following companies have shares listed on the #{@se.name}:"%> <br>
-
-<% @se.shares.each do |share|%>
-<%= "Company name: #{share.company.name} "%> <br>
-<%= "Industry #{share.company.industry} "%> <br>
+<% @se.companys.each do |company|%>
+<%= link_to"#{company.name}", company_path(company.id)%> <br>
+<%= "Industry #{company.industry} "%> <br>
 <%end%>

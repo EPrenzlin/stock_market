@@ -1,25 +1,36 @@
 <h1> Sign-up </h1> 
 <h1> blah blah </h1>
 <%=form_for @c do |f| %>
-<%=f.label :name %>
+<%=f.label :Company_name %>
 <%=f.text_field :name %> <br> 
 <%=f.label :password %>
 <%=f.password_field :password %><br> 
+<%=f.label :password_confirmation %>
+<%=f.password_field :password_confirmation %><br> 
 <%=f.label :address %>
 <%=f.text_field :address %> <br>
 <%=f.label :description %>
 <%=f.text_area :description %> <br> 
 <%=f.label :industry %>
-<%=f.text_field :industry %>
+<%=f.select :industry, ['Tech', 'Banking', 'Car', 'Conglomorate', 'Pharma'] %>
 
 <%=f.fields_for @c.shares.build do |s| %>
 <%=s.label :price%>
 <%=s.text_field :price%>
 <%=s.label :dividend%>
-<%=s.text_field :dividend%>
+<%=s.select :dividend, ['Yes','No']%>
 <%=s.label :preference_share%>
-<%=s.text_field :preference%> 
+<%=s.select :preference, ['Yes', 'No']%> 
 <%=s.collection_select :stock_exchange_id, StockExchange.all, :id, :name %>
 <%end%>
 <%=f.submit "Sign-up"%>
 <%end%>
+
+
+<%if @c.errors.any?%> 
+<%=@c.errors.full_messages.each do |error|%>
+<%=puts error %><br>
+<%end%>
+<%end%>
+
+

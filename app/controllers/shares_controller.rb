@@ -6,7 +6,7 @@ before_action :authenticate
     end
 
     def new 
-    if params[:company_id] == current_user.id
+    if params[:company_id].to_i == current_user.id
     @share = Share.new
     @company = current_user
     else 

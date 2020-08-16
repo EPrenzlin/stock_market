@@ -7,18 +7,19 @@ before_action :authenticate, only:[:index, :edit, :show]
 
     def create 
     @c = Company.new(company_params)
-    share = Share.new
-    share.price = params[:company][:share][:price]
-    share.dividend = params[:company][:share][:dividend]
-    share.preference = params[:company][:share][:preference]
-    share.stock_exchange_id = params[:company][:share][:stock_exchange_id]
-    @c.shares << share
+    @share = Share.new
+    @share.price = params[:company][:share][:price]
+    @share.dividend = params[:company][:share][:dividend]
+    @share.preference = params[:company][:share][:preference]
+    @share.stock_exchange_id = params[:company][:share][:stock_exchange_id]
+    @c.shares << @share
     @c.save
+    binding.pry
     if @c.valid?
         session[:company_id] = @c.id
         redirect_to company_path(@c)
     else 
-        redirect_to new 
+        render new_company_path 
     end
     end
 
@@ -53,7 +54,7 @@ before_action :authenticate, only:[:index, :edit, :show]
 
     private 
     def company_params 
-    params.require(:company).permit(:name, :password, :address, :description, :industry)
+    params.require(:company).permit(:name, :password,:password_confirmation,:address, :description, :industry)
     end
 
     def current_user
