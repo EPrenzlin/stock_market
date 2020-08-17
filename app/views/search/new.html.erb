@@ -1,1 +1,28 @@
 <h1> Testing </h1>
+
+<h3> Search Results </h3>
+<%if !@shares.blank?%>
+<% @shares.each do |s|%>
+<%=s.price%>
+<%=s.company.name%>
+<%=s.stock_exchange.name%>
+<br>
+<%end%>
+<%else%>
+<%="No Shares listed at that price "%>
+<%end%>
+<br>
+<div>
+
+<%if !@address.blank?%>
+<%@address.each do |company|%>
+<ul>
+<li><%=company.name%> 
+<%=company.address%>
+</ul>
+<br>
+<%end%>
+<%else%>
+<%= "No Companys are listed within that address"%>
+<%end%>
+</div>

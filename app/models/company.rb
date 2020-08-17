@@ -18,14 +18,18 @@ class Company < ApplicationRecord
         Company.find_or_create_by(uid: auth["uid"]) do |c| 
         c.name = auth["info"]["name"]
         c.password = SecureRandom.hex(16)
-        c.save 
+        c.save(validate:false)
         end
     end
 
-    def self.order_share_price(params) 
-    self.shares.order(price::desc)
+
+    def self.order_address
+    Company.order(:name)
     end
 
-
+    def self.search(params)
+    where("LOWER(address) LIKE ?", "%#{params[:company_search]}%")
+    end
 
 end
+

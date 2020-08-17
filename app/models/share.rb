@@ -9,4 +9,9 @@ class Share < ApplicationRecord
     validates :stock_exchange, presence:true
 
 
+    def self.search_price(params) 
+    where("LOWER(price) LIKE ?", "%#{params[:share_search].to_i}%")
+    end
+    # where("LOWER(address) LIKE ?", "%#{params[:company_search]}%")
+
 end

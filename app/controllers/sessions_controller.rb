@@ -19,12 +19,12 @@ class SessionsController < ApplicationController
 
     def omniauth   
     c = Company.create_from_omniauth(auth)
-    if c.valid?
+    if c.id != nil
     session[:company_id] = c.id
-    redirect_to company_path(c)
+    redirect_to companies_path
     else
     flash[:message] = c.errors.full_messages.join(", ")
-    redirect_to company_path
+    redirect_to signup_path
     end
     end
 
