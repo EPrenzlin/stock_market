@@ -13,9 +13,13 @@
   <%=link_to "logout", logout_path %> <br>
   <%=link_to "All Companies", companies_path%> <br>
   <%=link_to "All Stock Exchanges", stock_exchange_index_path%> <br>
+  <%=link_to "All Shares", shares_path%> <br>
+  
+  <%if flash[:alert] != nil%>
+  <%= flash[:alert]%> <br>
+  <%end%>
   <br> 
   
-
   
   <%= yield %>
 

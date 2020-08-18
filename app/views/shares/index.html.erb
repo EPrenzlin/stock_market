@@ -1,19 +1,27 @@
-<h1> This is the share index page </h1>
+<h1> This is the share  page </h1>
 
-<h4> This will be the search bar </h4>
-
-<%if @c.shares.blank? %>
-<%= "This company has no shares" %>
-<%else%>
-<% @c.shares.each do |s| %>
-<%="Notional Price: #{s.price}"%> <br>
-<%="Preference Share? #{s.preference}"%><br>
-<%="Pays a Dividend? #{s.dividend}"%><br>
-<%="Listed on : #{s.stock_exchange.name}"%> <br>
-<%=link_to "Edit Share details", edit_company_share_path(@c.id,s.id)%> <br>
+<% if @c.shares.count != nil %>
+<h1><%= "All the current shares for #{@c.name} "%></h1>
+<% @c.shares.each do |s| %> <br>
+Price:<%=s.price%><br>
+Dividend:<%=s.dividend%><br>
+Preference:<%=s.preference%><br>
+Stock Exchange:<%=s.stock_exchange.name%><br>
+<%= link_to "Edit Share details", edit_company_share_path(@c.id,s.id)%> <br>
+<%= button_to "Delete this share", share_path(s), method: :delete%>
+<%= "------------"%>
 <%end%>
+<br>
+<h1><%= "Below are all current Shares listed" %> <br></h1>
+<%@shares.each do |share| %>
+Price:<%=share.price%> <br>
+Dividend Paying?:<%=share.dividend%> <br>
+Preference Share?:<%=share.preference%> <br>
+Company Name:<%=link_to share.company.name, company_path(share.company_id)%><br>
+Stock Exchange Name:<%=link_to share.stock_exchange.name, stock_exchange_path(share.stock_exchange)%> <br>
+<%="--------------------"%> <br>
+<%end%> <br>
+
 <%end%>
 
 
-<%#searach by price %>
-<%#searach by name  %>

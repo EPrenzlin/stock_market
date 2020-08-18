@@ -2,8 +2,8 @@ class SharesController < ApplicationController
 before_action :authenticate
     
     def index 
-    @c = Company.find_by(id:params[:company_id])
-    #if there is a params[:search], otherwise let it be. 
+    @c = Company.find_by(id:session[:company_id])
+    @shares = Share.all
     end
 
     def new 
@@ -42,6 +42,15 @@ before_action :authenticate
     @share = Share.find_by(id:params[:id])
     @share.update(share_params)
     redirect_to company_shares_path(@share.company_id)
+    end
+
+    def destroy 
+    share = Share.find_by(id:params[:id])
+    if share.company_id == current_user.id 
+        share.destroy
+    else 
+        redirect_to company_shares_path(current_user)
+    end
     end
 
     private 

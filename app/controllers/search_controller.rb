@@ -3,14 +3,13 @@ class SearchController < ApplicationController
 
     def new 
     if params[:share_search].blank? && params[:company_search].blank? 
-    flash[:alert] = "Much empty"
+    flash[:alert] = "You did not search for anything"
     redirect_to companies_path
     elsif !params[:share_search].blank? && params[:company_search].blank?
     @shares = Share.search_price(params)
     elsif !params[:company_search].blank? && params[:share_search].blank?
     @address = Company.search(params)
     end 
-    #we get a params here! 
     end
 
 

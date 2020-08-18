@@ -10,8 +10,7 @@ class Share < ApplicationRecord
 
 
     def self.search_price(params) 
-    where("LOWER(price) LIKE ?", "%#{params[:share_search].to_i}%")
+    where("price LIKE ?", "#{params[:share_search].to_i/10}_")
     end
-    # where("LOWER(address) LIKE ?", "%#{params[:company_search]}%")
 
 end

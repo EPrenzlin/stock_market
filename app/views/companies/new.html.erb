@@ -14,15 +14,15 @@
 <%=f.label :industry %>
 <%=f.select :industry, ['Tech', 'Banking', 'Car', 'Conglomorate', 'Pharma'] %>
 
-<%=f.fields_for @c.shares.build do |s| %>
-<%=s.label :price%>
-<%=s.text_field :price%>
-<%=s.label :dividend%>
-<%=s.select :dividend, ['Yes','No']%>
-<%=s.label :preference_share%>
-<%=s.select :preference, ['Yes', 'No']%> 
-<%=s.collection_select :stock_exchange_id, StockExchange.all, :id, :name %>
-<%end%>
+<%=f.fields_for :shares do |s| %>
+    <%=s.label :price%>
+    <%=s.text_field :price%>
+    <%=s.label :dividend%>
+    <%=s.select :dividend, ['Yes','No']%>
+    <%=s.label :preference_share%>
+    <%=s.select :preference, ['Yes', 'No']%> 
+    <%=s.collection_select :stock_exchange_id, StockExchange.all, :id, :name %>
+    <%end%>
 <%=f.submit "Sign-up"%>
 <%end%>
 
