@@ -48,6 +48,7 @@ before_action :authenticate
     share = Share.find_by(id:params[:id])
     if share.company_id == current_user.id 
         share.destroy
+        redirect_to company_shares_path(current_user)
     else 
         redirect_to company_shares_path(current_user)
     end

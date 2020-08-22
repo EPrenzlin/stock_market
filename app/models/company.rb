@@ -26,15 +26,14 @@ class Company < ApplicationRecord
     def self.create_from_omniauth(auth)
         Company.find_or_create_by(uid: auth["uid"]) do |c| 
         c.name = auth["info"]["name"]
-        c.password = SecureRandom.hex(16)
+        c.password = SecureRandom.hex(12)
+        c.description = "Google Log-in"
+        c.address = "Google Log-in"
+        c.industry = "Google Log-in"
         c.save(validate:false)
         end
     end
 
-
-    # def self.order_address
-    # Company.order(:name)
-    # end
 
     def self.search(params)
     where("LOWER(address) LIKE ?", "%#{params[:company_search]}%")

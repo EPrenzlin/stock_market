@@ -4,6 +4,7 @@ before_action :authenticate, only:[:index, :edit, :show]
     def new 
     @c = Company.new
     @c.shares.build
+
     end
 
     def create 

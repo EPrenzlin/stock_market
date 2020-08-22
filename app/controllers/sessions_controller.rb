@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     @c = Company.find_by(name:params[:name]) 
     if @c && @c.authenticate(params[:password])
         session[:company_id] = @c.id 
-        redirect_to company_path(@c) 
+        redirect_to companies_path 
     else 
         redirect_to '/'
     end

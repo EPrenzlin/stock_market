@@ -27,13 +27,11 @@
 <%end%>
 
 
-<div class="field_with_errors">
 <%if @c.errors.any?%> 
 <%=@c.errors.full_messages.each do |error|%>
 <%= puts error %><br>
 <%end%>
 <%end%>
-</div>
 
 
 
