@@ -2,7 +2,8 @@
 <h2><%="#{@c.name} Show page" %> </h2><br> 
 <br>
 
-
+<%=link_to "See all current Shares", company_shares_path(@current_user.id)%> <br>
+<br>
 Company Name: <%=@c.name%> <br> 
 Description:<%=@c.description%><br>
 Address:<%=@c.address%> <br>
