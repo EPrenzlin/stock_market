@@ -1,7 +1,9 @@
 <br>
 <%@se.each do |s| %>
+<div class="stock_exchanges" style="max-width: 500rem;">
 <%=link_to "#{s.name}", stock_exchange_path(s.id) %> <br>
 <%="Address #{s.address}"%> <br> 
 <%=s.history %> <br>
 <br> 
+</div> 
 <%end%>

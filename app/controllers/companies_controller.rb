@@ -37,7 +37,7 @@ before_action :authenticate, only:[:index, :edit, :show]
 
     def update 
     @c = Company.find_by(id:params[:id])
-    @c.update(company_params) 
+    @c.update(company_params)
     redirect_to company_path(@c)
     end
 

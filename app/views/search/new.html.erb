@@ -1,6 +1,7 @@
-<h1> Testing </h1>
-
+<h1> Results </h1>
 <h3> Search Results </h3>
+<br> 
+<div class="container-fluid">
 <%if !@shares.blank?%>
 <% @shares.each do |s|%>
 <%=s.price%>
@@ -8,8 +9,10 @@
 <%=s.stock_exchange.name%>
 <br>
 <%end%>
+<div> 
 <%else%>
 <%="No Shares listed at that price "%>
+</div> 
 <%end%>
 <br>
 <div>

@@ -3,7 +3,7 @@ before_action :authenticate
     
     def index 
     @c = Company.find_by(id:session[:company_id])
-    @shares = Share.all
+    @shares = Share.share_price_order
     end
 
     def new 

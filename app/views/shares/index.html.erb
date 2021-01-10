@@ -1,27 +1,45 @@
-<h1> This is the share  page </h1>
+<div class="container">
+<h1> Shares page </h1>
+</div> 
 
 <% if @c.shares.count != nil %>
+<div class="container"> 
 <h1><%= "All the current shares for #{@c.name} "%></h1>
+</div>
+<div class="card"> 
 <% @c.shares.each do |s| %> <br>
+<div class="container">
 Price:<%=s.price%><br>
 Dividend:<%=s.dividend%><br>
 Preference:<%=s.preference%><br>
 Stock Exchange:<%=s.stock_exchange.name%><br>
 <%= link_to "Edit Share details", edit_company_share_path(@c.id,s.id)%> <br>
-<%= button_to "Delete this share", share_path(s), method: :delete%>
-<%= "------------"%>
+<%= button_to "Delete this share", share_path(s), method: :delete%> <br> 
+</div>
 <%end%>
 <br>
+
+<div class="container">
 <h1><%= "Below are all current Shares listed" %> <br></h1>
+</div> 
+
 <%@shares.each do |share| %>
+<div class="container">
+<div class="card border-primary mb-3" style="width: 50rem;">
+<span class="border border-primary">
 Price:<%=share.price%> <br>
 Dividend Paying?:<%=share.dividend%> <br>
-Preference Share?:<%=share.preference%> <br>
-Company Name:<%=link_to share.company.name, company_path(share.company_id)%><br>
+Preference Share?:<%=share.preference%> <br> 
+Company Name:<%=link_to share.company.name, company_path(share.company_id)%><br> 
 Stock Exchange Name:<%=link_to share.stock_exchange.name, stock_exchange_path(share.stock_exchange)%> <br>
-<%="--------------------"%> <br>
+<br> 
+</span>
+</div> 
+</div>
+
 <%end%> <br>
 
 <%end%>
+</div> 
 
 

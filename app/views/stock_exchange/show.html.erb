@@ -1,7 +1,15 @@
 
-
+<div class="container-fliud"> 
 <%= "The following companies have shares listed on the #{@se.name}:"%> <br>
+</div>
+
 <% @se.companys.distinct.each do |company|%>
-<%= link_to"#{company.name}", company_path(company.id)%> <br>
-<%= "Industry #{company.industry} "%> <br>
+<div class="container">
+<div class ="card" style="width: 30rem;">
+<%= link_to"#{company.name}", company_path(company.id)%><br> 
+<%= "Industry: #{company.industry} "%>
+</div> 
+</div>
+
 <%end%>
+

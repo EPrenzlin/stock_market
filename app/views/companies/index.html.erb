@@ -1,9 +1,16 @@
+
 <%@c.each do |c| %>
-<%=link_to c.name, company_path(c) %> <br> 
+<div class="container">
+<div class="card" style="width: 18rem;">
+<ul class="list-group list-group-flush">
+<ul class ="company-listed"> <%=link_to c.name, company_path(c) %> </ul> 
+</ul>
+</div> 
+</div> 
 <%end%> 
 
-<br>
 
+<div class="container"> 
   <%=form_tag(search_path, :method => "get") %>
   <%=search_field_tag :share_search, params[:share_search], placeholder:"Search Share Prices"%> <br>
   <%=button_tag "Search"%><br>
@@ -11,3 +18,4 @@
   <%=form_tag(search_path, :method => "get") %>
   <%=search_field_tag :company_search, params[:company_search], placeholder:"Search for Addresses"%> <br>
   <%=button_tag "Search"%><br>
+</div> 

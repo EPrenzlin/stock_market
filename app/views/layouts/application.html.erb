@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>StockMarket</title>
+    <title>StockMarket Intranet</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,18 +9,22 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <%=link_to "logout", logout_path %> <br>
-  <%=link_to "All Companies", companies_path%> <br>
-  <%=link_to "All Stock Exchanges", stock_exchange_index_path%> <br>
-  <%=link_to "All Shares", shares_path%> <br>
-  
+  <body>  
+  <div class="container">
+  <nav class="navbar navbar-dark bg-dark">
+  <%=link_to "All Shares", shares_path%> 
+  <%=link_to "All Stock Exchanges", stock_exchange_index_path%>
+  <%=link_to "All Companies", companies_path%>
+  <%=link_to "logout", logout_path %>
+  </nav> 
+  </div> 
+
   <%if flash[:alert] != nil%>
   <%= flash[:alert]%> <br>
   <%end%>
   <br> 
   
-  
+
   <%= yield %>
 
   </body>

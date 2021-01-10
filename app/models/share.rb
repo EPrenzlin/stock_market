@@ -13,4 +13,8 @@ class Share < ApplicationRecord
     where("price LIKE ?", "#{params[:share_search].to_i/10}_")
     end
 
+    def self.share_price_order
+    self.all.order(:price)
+    end
+
 end

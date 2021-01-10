@@ -65,3 +65,9 @@ gem 'omniauth-google-oauth2'
 gem "omniauth-google", "~> 1.0"
 
 gem "thin", "~> 1.7"
+
+gem 'bootstrap-sass', '~> 3.3.6'  
+
+gem "sass", "~> 3.7"
+
+gem "jquery", "~> 0.0.1"
