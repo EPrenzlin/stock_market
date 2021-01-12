@@ -1,6 +1,7 @@
 # README
 
-This app is a pseudo-stock tracker/ market for mock Companies ; a user is able to log-in as a Company or through Google, issue their own shares on various stock exchanges, search by price, and also search for the various address' of companies. 
+This app is a makeshit static Stock Intranet. A user is able to log-in as a Company or through Google as provided with OAuth, issue their own shares on various stock exchanges, search by price, and also search for the various address' of companies. 
+
 
 # This set up requires the following : 
 - Rails 6.0.3 
